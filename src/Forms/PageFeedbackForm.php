@@ -39,11 +39,11 @@ class PageFeedbackForm extends Form
     public function getRatingMap()
     {
         return array(
-            0 => 1,
-            1 => 2,
-            2 => 3,
-            3 => 4,
-            4 => 5
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5
         );
     }
 }

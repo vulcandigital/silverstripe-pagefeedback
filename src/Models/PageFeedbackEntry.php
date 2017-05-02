@@ -7,7 +7,7 @@
  *
  * @property int Rating 1-5 (Terrible-Excellent)
  * @property string Comment An optional comment the user is able to provided
- * @property string IPAddress The IP address is used to enforce uniqueness
+ * @property string SessionID The session ID that was active when this entry was submitted
  * @property int PageID
  * @method Page Page
  */
@@ -17,7 +17,7 @@ class PageFeedbackEntry extends DataObject
     private static $db = array(
         'Rating' => 'Enum("1,2,3,4,5")',
         'Comment' => 'Text',
-        'IPAddress' => 'Varchar(255)'
+        'SessionID' => 'Text'
     );
 
     /** @var array */
@@ -30,6 +30,18 @@ class PageFeedbackEntry extends DataObject
         'Rating' => 'Rating',
         'CmsFriendlyComment' => 'Comment'
     );
+
+    /**
+     * @return FieldList
+     */
+    public function getCMSFields()
+    {
+        $fields = parent::getCMSFields();
+
+        $fields->removeByName('SessionID');
+
+        return $fields;
+    }
 
     /**
      * @return string|HTMLText
