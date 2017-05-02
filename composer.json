@@ -17,6 +17,9 @@
     "silverstripe/cms": ">= 3.1.0"
   },
   "extra": {
-    "installer-name": "pagefeedback"
+    "installer-name": "pagefeedback",
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
   }
 }
