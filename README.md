@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/zanderwar/silverstripe-pagefeedback.svg?branch=master)](https://travis-ci.org/zanderwar/silverstripe-pagefeedback)
+[![Latest Stable Version](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/v/stable)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
+[![Total Downloads](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/downloads)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
+[![License](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/license)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
+[![Monthly Downloads](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/d/monthly)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
+
 # silverstripe-pagefeedback
 
 This module allows you to add a form to any page type for the purpose of accruing feedback about how a user perceives that page.
