@@ -1,0 +1,22 @@
+{
+  "name": "zanderwar/silverstripe-pagefeedback",
+  "description": "This module allows you to add a form to any page type for the purpose of accruing feedback about how a user perceives that page.",
+  "type": "silverstripe-module",
+  "keywords": ["silverstripe", "feedback", "form", "rating"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Reece Alexander",
+      "email": "reece@steadlane.com.au"
+    }
+  ],
+  "require":
+  {
+    "php": ">=5.3.0",
+    "silverstripe/framework": ">= 3.1.0",
+    "silverstripe/cms": ">= 3.1.0"
+  },
+  "extra": {
+    "installer-name": "pagefeedback"
+  }
+}
