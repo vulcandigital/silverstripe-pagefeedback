@@ -7,8 +7,6 @@ Commonly found on help desk pages under a label similar to "How helpful did you 
 It allows the user to rate the page out of five (5) and allows them to optionally provide a comment
 
 The users IP address is recorded on a per-page basis so that a user can only submit feedback once for that specific page. This comes with its fair share of caveats (ie LAN, Internet Cafes etc) that will be eliminated in future versions.
-
-Each of the five radio buttons on the form have a class of `pagefeedback-option-n` where `n` is `1` through to `5` for easier customisation (ie swap the radio buttons with smiley faces that have different expressions; sad through to happy)
  
 ## Installation
 
@@ -47,6 +45,48 @@ MyCustomPage_Controller:
   extensions:
     - PageFeedbackController
 ```
+
+#### Adding the form
+
+In order for the form to show, you should add `$PageFeedbackForm` in the location you wish for it to display.
+
+e.g.
+
+```html
+<div id='myfeedbackform'>
+    $PageFeedbackForm
+</div>
+```
+
+If you wish to hide the form:
+
+```html
+<% if not $GivenFeedback %>
+<div id='myfeedbackform'>
+    $PageFeedbackForm
+</div>
+<% end_if %>
+```
+
+If you wish to display information about the feedback the user has provided:
+
+```html
+<% if $GivenFeedback %>
+    <% control $GivenFeedback %>
+    <div id='myprovidedfeedback'>
+        Rating: $Rating<br/>
+        Comment: $Comment
+    </div>
+    <% end_control %>
+<% end_if %>
+```
+
+## Inspiration
+
+The form is provided to you unstyled, but each of the five radio buttons on the form have a class of `pagefeedback-option-n` where `n` is `1` through to `5` for easier customisation (ie swap the radio buttons with smiley faces that have different expressions; sad through to happy)
+
+![Shopify Inspiration](http://i.imgur.com/FxtzPFJ.png)
+![Shopify Inspiration](http://i.imgur.com/YklTmRc.png)
 
 ## Contributing
 
