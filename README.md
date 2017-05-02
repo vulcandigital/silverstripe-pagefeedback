@@ -86,13 +86,17 @@ If you wish to display information about the feedback the user has provided:
     <% end_control %>
 <% end_if %>
 ```
+## Features
+- Adds a "Page Rating" to the CMS Page Editor
+- Adds a "Page Feedback" tab containing a `GridField` of all feedback for that specific page
 
 ## Inspiration
 
 The form is provided to you unstyled, but each of the five radio buttons on the form have a class of `pagefeedback-option-n` where `n` is `1` through to `5` for easier customisation (ie swap the radio buttons with smiley faces that have different expressions; sad through to happy)
 
 ![Shopify Inspiration](http://i.imgur.com/FxtzPFJ.png)
-![Shopify Inspiration](http://i.imgur.com/YklTmRc.png)
+![Shopify Inspiration](http://i.imgur.com/YklTmRc.png)  
+(inspiration courtesy of shopify docs)
 
 ## Contributing
 
