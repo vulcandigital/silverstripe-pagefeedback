@@ -64,7 +64,7 @@ e.g.
 </div>
 ```
 
-If you wish to hide the form:
+If you wish to hide the form if feedback has already been supplied by the user:
 
 ```html
 <% if not $GivenFeedback %>
