@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class PageFeedback
+ *
+ * @author Reece Alexander <reece@steadlane.com.au>
+ */
 class PageFeedbackController extends Extension
 {
     /** @var array */
