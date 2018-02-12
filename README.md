@@ -1,8 +1,9 @@
-[![Build Status](https://travis-ci.org/zanderwar/silverstripe-pagefeedback.svg?branch=master)](https://travis-ci.org/zanderwar/silverstripe-pagefeedback)
-[![Latest Stable Version](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/v/stable)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
-[![Total Downloads](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/downloads)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
-[![License](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/license)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
-[![Monthly Downloads](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/d/monthly)](https://packagist.org/packages/zanderwar/silverstripe-pagefeedback)
+[![Build Status](https://travis-ci.org/zanderwar/silverstripe-pagefeedback.svg?branch=master)](https://travis-ci.org/vulcandigital/silverstripe-pagefeedback)
+[![Latest Stable Version](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/v/stable)](https://packagist.org/packages/vulcandigital/silverstripe-pagefeedback)
+[![Latest Unstable Version](https://poser.pugx.org/vulcandigital/silverstripe-pagefeedback/v/unstable)](https://packagist.org/packages/vulcandigital/silverstripe-pagefeedback)
+[![Total Downloads](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/downloads)](https://packagist.org/packages/vulcandigital/silverstripe-pagefeedback)
+[![License](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/license)](https://packagist.org/packages/vulcandigital/silverstripe-pagefeedback)
+[![Monthly Downloads](https://poser.pugx.org/zanderwar/silverstripe-pagefeedback/d/monthly)](https://packagist.org/packages/vulcandigital/silverstripe-pagefeedback)
 
 # silverstripe-pagefeedback
 
@@ -12,8 +13,8 @@ Commonly found on help desk pages under a label similar to "How helpful did you 
 
 It allows the user to rate the page out of five (5) and allows them to optionally provide a comment
 
-The users IP address is recorded on a per-page basis so that a user can only submit feedback once for that specific page. This comes with its fair share of caveats (ie LAN, Internet Cafes etc) that will be eliminated in future versions.
- 
+The users IP address and their PHP Session ID is recorded on a per-page basis so that a user can only submit feedback once for that specific page.
+
 ## Requirements
 * silverstripe/cms: "^4.0"
 
@@ -24,8 +25,6 @@ Installation is supported via composer only:
 ```
 composer require zanderwar/silverstripe-pagefeedback "^2"
 ```
-
-After the module has been successfully installed, run a `dev/build` (and `?flush=1` for good measure)
 
 ## Configuration
 
@@ -55,9 +54,22 @@ Vulcan\UserDocs\UserDocsPageController:
     - Vulcan\PageFeedback\Extensions\PageFeedbackControllerExtensions
 ```
 
+## Modes
+By default, the mode is set to "form" which will generate a form allowing a user to rate between 1-5 and optionally provide a comment
+An alternate mode, "thumbs" is available which will generate a form containing two buttons `+1` and `-1`, which can be beautifully styled:
+
+![Thumbs Preview](https://i.imgur.com/RxHQQ2t.png)
+
+You can change the mode via YML on the controllers of the pages you desire
+
+```
+Vulcan\UserDocs\UserDocsPageController:
+    pagefeedback_mode: "thumbs"
+```
+
 #### Adding the form
 
-In order for the form to show, you should add `$PageFeedbackForm` in the location you wish for it to display.
+In order for the form to show you will need to add `$PageFeedbackForm` into your template, in the location you wish for it to display.
 
 e.g.
 
@@ -81,16 +93,20 @@ If you wish to display information about the feedback the user has provided:
 
 ```html
 <% if $GivenFeedback %>
-    <% control $GivenFeedback %>
+    <% with $GivenFeedback %>
     <div id='myprovidedfeedback'>
-        Rating: $Rating<br/>
-        Comment: $Comment
+        <% if not $Rating %>
+            Rating: $Rating<br/>
+            Comment: $Comment
+        <% else %>
+            You gave this page a thumbs <strong>$Thumbs</strong>
+        <% end_if %>
     </div>
-    <% end_control %>
+    <% end_with %>
 <% end_if %>
 ```
 ## Features
-- Adds a "Page Rating" to the CMS Page Editor
+- Adds a "Page Rating" section to the CMS Page Editor
 - Adds a "Page Feedback" tab containing a `GridField` of all feedback for that specific page
 
 ## Inspiration
@@ -99,22 +115,9 @@ The form is provided to you unstyled, but each of the five radio buttons on the 
 
 ![Shopify Inspiration](http://i.imgur.com/FxtzPFJ.png)
 ![Shopify Inspiration](http://i.imgur.com/YklTmRc.png)  
+
 (inspiration courtesy of shopify docs)
-
-## Contributing
-
-If you wish to contribute to this module please do not hesitate to do so by forking this respository and submitting a Pull Request with your changes/improvements
 
 ## License
 
-```
-MIT License
-
-Copyright (c) 2017 Zanderwar (Reece Alexander)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-```
+[BSD-3-Clause](LICENSE.md) - [Vulcan Digital Ltd](https://vulcandigital.co.nz)
