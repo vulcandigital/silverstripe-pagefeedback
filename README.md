@@ -28,7 +28,7 @@ composer require zanderwar/silverstripe-pagefeedback "^2"
 
 ## Configuration
 
-This entire module is an both a `DataExtension` and a `Extension`, meaning you must enable it on the page types you desire.
+This module is predominantly both a `DataExtension` and a `Extension`. You must apply them on the page type(s) and their respective controller(s) where you wish to be able to render the feedback form.
 
 If you wanted to enable it's functionality on all pages you would:
 
