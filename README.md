@@ -35,11 +35,11 @@ If you wanted to enable it's functionality on all pages you would:
 ```yml
 Page:
   extensions:
-    - - Vulcan\PageFeedback\Extensions\PageFeedbackExtensions
+    - Vulcan\PageFeedback\Extensions\PageFeedbackExtensions
 
 PageController:
   extensions:
-    - - Vulcan\PageFeedback\Extensions\PageFeedbackControllerExtensions
+    - Vulcan\PageFeedback\Extensions\PageFeedbackControllerExtensions
 ```
 
 or for a specific page type
