@@ -1,0 +1,22 @@
+Vulcan\PageFeedback\Models\PageFeedbackEntry:
+  form_mode_with_comment:
+    SessionID: abcdefghijklmnopqrstuvwxyz
+    IPAddress: 127.0.0.1
+    Rating: 5
+    Comment: Hello World!
+  form_mode_without_comment:
+   SessionID: abcdefghijklmnopqrstuvwxyz
+   IPAddress: 127.0.0.1
+   Rating: 5
+  thumbs_mode_first:
+   SessionID: abcdefghijklmnopqrstuvwxyz
+   IPAddress: 127.0.0.1
+   Thumbs: Up
+  thumbs_mode_second:
+   SessionID: abcdefghijklmnopqrstuvwxyz
+   IPAddress: 127.0.0.1
+   Thumbs: Up
+  thumbs_mode_third:
+   SessionID: abcdefghijklmnopqrstuvwxyz
+   IPAddress: 127.0.0.1
+   Thumbs: Down

@@ -1,3 +1,0 @@
-PageFeedback:
-  # If the spam protection module is enabled, it will be activated on this form
-  spam_protection: true
