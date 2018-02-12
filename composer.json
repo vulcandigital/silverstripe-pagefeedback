@@ -1,5 +1,5 @@
 {
-  "name": "zanderwar/silverstripe-pagefeedback",
+  "name": "vulcandigital/silverstripe-pagefeedback",
   "description": "This module allows you to add a form to any page type for the purpose of accruing feedback about how a user perceives that page.",
   "type": "silverstripe-vendormodule",
   "keywords": ["silverstripe", "feedback", "form", "rating"],
