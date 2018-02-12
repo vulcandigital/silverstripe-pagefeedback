@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class PageFeedback
+ *
+ * @author Reece Alexander <reece@steadlane.com.au>
+ */
 class PageFeedbackController extends Extension
 {
     /** @var array */
@@ -15,7 +20,16 @@ class PageFeedbackController extends Extension
      */
     public function getPageFeedbackForm()
     {
-        return PageFeedbackForm::create($this->owner, __FUNCTION__);
+        $config = Config::inst()->forClass('PageFeedback');
+
+        $form = PageFeedbackForm::create($this->owner, __FUNCTION__);
+
+        if($form->hasExtension('FormSpamProtectionExtension') && $config->spam_protection) {
+            /** @noinspection PhpUndefinedMethodInspection */
+            $form->enableSpamProtection();
+        }
+
+        return $form;
     }
 
     /**
@@ -32,7 +46,7 @@ class PageFeedbackController extends Extension
         $current = PageFeedbackEntry::get()->filter(
             array(
                 'PageID' => $this->owner->ID,
-                'IPAddress' => $_SERVER['REMOTE_ADDR']
+                'SessionID' => session_id()
             )
         )->first();
 
@@ -44,7 +58,7 @@ class PageFeedbackController extends Extension
         /** @var PageFeedbackEntry $record */
         $record = PageFeedbackEntry::create();
         $form->saveInto($record);
-        $record->IPAddress = $_SERVER['REMOTE_ADDR'];
+        $record->SessionID = session_id();
         $record->PageID = $this->owner->ID;
         $record->write();
 
@@ -64,7 +78,7 @@ class PageFeedbackController extends Extension
         $record = PageFeedbackEntry::get()->filter(
             array(
                 'PageID' => $this->owner->ID,
-                'IPAddress' => $_SERVER['REMOTE_ADDR']
+                'SessionID' => session_id()
             )
         )->first();
 
