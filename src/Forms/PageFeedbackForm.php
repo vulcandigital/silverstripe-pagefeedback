@@ -31,12 +31,16 @@ class PageFeedbackForm extends Form
         ]);
 
         $actions = FieldList::create([
-            FormAction::create('processPageFeedback', 'Submit Feedback')
+            FormAction::create('processPageFeedback', 'Submit Feedback')->setUseButtonTag(true)->setButtonContent('Submit Feedback')
         ]);
 
         $validator = RequiredFields::create([
             'Rating'
         ]);
+
+        $this->extend('updateFormFields', $fields);
+        $this->extend('updateFormActions', $actions);
+        $this->extend('updateFormValidator', $validator);
 
         parent::__construct($controller, $name, $fields, $actions, $validator);
     }

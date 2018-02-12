@@ -6,6 +6,7 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\LiteralField;
 
 /**
  * Class PageFeedbackForm
@@ -24,9 +25,16 @@ class PageFeedbackThumbsForm extends Form
         $fields = FieldList::create([]);
 
         $actions = FieldList::create([
-            FormAction::create('processPageFeedbackUp', _t('VulcanPageFeedback.UP_BUTTON_TEXT', '+1')),
-            FormAction::create('processPageFeedbackDown', _t('VulcanPageFeedback.DOWN_BUTTON_TEXT', '-1')),
+            LiteralField::create('thumbsUpWrapper','<div class="pagefeedback-thumbs-up">'),
+            FormAction::create('processPageFeedbackUp', _t('VulcanPageFeedback.UP_BUTTON_TEXT', '+1'))->setUseButtonTag(true)->setButtonContent('+1'),
+            LiteralField::create('thumbsUpWrapperEnd','</div>'),
+            LiteralField::create('thumbsDownWrapper','<div class="pagefeedback-thumbs-down">'),
+            FormAction::create('processPageFeedbackDown', _t('VulcanPageFeedback.DOWN_BUTTON_TEXT', '-1'))->setUseButtonTag(true)->setButtonContent('-1'),
+            LiteralField::create('thumbsDownWrapperEnd','</div>'),
         ]);
+
+        $this->extend('updateFormFields', $fields);
+        $this->extend('updateFormActions', $actions);
 
         parent::__construct($controller, $name, $fields, $actions, null);
     }
