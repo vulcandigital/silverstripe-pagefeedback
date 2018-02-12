@@ -47,6 +47,8 @@ class PageFeedbackControllerExtension extends Extension
             $form->enableSpamProtection();
         }
 
+        $form->addExtraClass("pagefeedback-$mode");
+
         return $form;
     }
 
