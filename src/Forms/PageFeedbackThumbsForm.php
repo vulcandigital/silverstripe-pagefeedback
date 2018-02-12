@@ -25,12 +25,12 @@ class PageFeedbackThumbsForm extends Form
         $fields = FieldList::create([]);
 
         $actions = FieldList::create([
-            LiteralField::create('thumbsUpWrapper','<div class="pagefeedback-thumbs-up">'),
+            LiteralField::create('thumbsUpWrapper', '<div class="pagefeedback-thumbs-up">'),
             FormAction::create('processPageFeedbackUp', _t('VulcanPageFeedback.UP_BUTTON_TEXT', '+1'))->setUseButtonTag(true)->setButtonContent('+1'),
-            LiteralField::create('thumbsUpWrapperEnd','</div>'),
-            LiteralField::create('thumbsDownWrapper','<div class="pagefeedback-thumbs-down">'),
+            LiteralField::create('thumbsUpWrapperEnd', '</div>'),
+            LiteralField::create('thumbsDownWrapper', '<div class="pagefeedback-thumbs-down">'),
             FormAction::create('processPageFeedbackDown', _t('VulcanPageFeedback.DOWN_BUTTON_TEXT', '-1'))->setUseButtonTag(true)->setButtonContent('-1'),
-            LiteralField::create('thumbsDownWrapperEnd','</div>'),
+            LiteralField::create('thumbsDownWrapperEnd', '</div>'),
         ]);
 
         $this->extend('updateFormFields', $fields);
