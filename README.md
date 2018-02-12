@@ -14,42 +14,45 @@ It allows the user to rate the page out of five (5) and allows them to optionall
 
 The users IP address is recorded on a per-page basis so that a user can only submit feedback once for that specific page. This comes with its fair share of caveats (ie LAN, Internet Cafes etc) that will be eliminated in future versions.
  
+## Requirements
+* silverstripe/cms: "^4.0"
+
 ## Installation
 
 Installation is supported via composer only:
 
 ```
-composer require zanderwar/silverstripe-pagefeedback
+composer require zanderwar/silverstripe-pagefeedback "^2"
 ```
 
 After the module has been successfully installed, run a `dev/build` (and `?flush=1` for good measure)
 
 ## Configuration
 
-`PageFeedback` is an `Extension` meaning you must activate it on the page types you desire.
+This entire module is an both a `DataExtension` and a `Extension`, meaning you must enable it on the page types you desire.
 
 If you wanted to enable it's functionality on all pages you would:
 
 ```yml
 Page:
   extensions:
-    - PageFeedback
+    - - Vulcan\PageFeedback\Extensions\PageFeedbackExtensions
 
-Page_Controller:
+PageController:
   extensions:
-    - PageFeedbackController
+    - - Vulcan\PageFeedback\Extensions\PageFeedbackControllerExtensions
 ```
 
 or for a specific page type
 
 ```yml
-MyCustomPage:
+Vulcan\UserDocs\UserDocsPage:
   extensions:
-    - PageFeedback
+    - Vulcan\PageFeedback\Extensions\PageFeedbackExtension
 
-MyCustomPage_Controller:
+Vulcan\UserDocs\UserDocsPageController:
   extensions:
-    - PageFeedbackController
+    - Vulcan\PageFeedback\Extensions\PageFeedbackControllerExtensions
 ```
 
 #### Adding the form

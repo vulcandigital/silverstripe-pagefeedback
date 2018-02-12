@@ -6,16 +6,12 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
-use SilverStripe\Forms\HiddenField;
-use SilverStripe\Forms\OptionsetField;
-use SilverStripe\Forms\RequiredFields;
-use SilverStripe\Forms\TextField;
 
 /**
  * Class PageFeedbackForm
  * @package Vulcan\PageFeedback\Forms
  */
-class PageFeedbackForm extends Form
+class PageFeedbackThumbsForm extends Form
 {
     /**
      * PageFeedbackForm constructor.
@@ -25,20 +21,14 @@ class PageFeedbackForm extends Form
      */
     public function __construct(Controller $controller, $name)
     {
-        $fields = FieldList::create([
-            OptionsetField::create('Rating', 'Rating', $this->getRatingMap())->setTemplate('Vulcan\PageFeedback\Forms\PageFeedbackOptionsetField'),
-            TextField::create('Comment', 'Comment')
-        ]);
+        $fields = FieldList::create([]);
 
         $actions = FieldList::create([
-            FormAction::create('processPageFeedback', 'Submit Feedback')
+            FormAction::create('processPageFeedbackUp', _t('VulcanPageFeedback.UP_BUTTON_TEXT', '+1')),
+            FormAction::create('processPageFeedbackDown', _t('VulcanPageFeedback.DOWN_BUTTON_TEXT', '-1')),
         ]);
 
-        $validator = RequiredFields::create([
-            'Rating'
-        ]);
-
-        parent::__construct($controller, $name, $fields, $actions, $validator);
+        parent::__construct($controller, $name, $fields, $actions, null);
     }
 
     /**
