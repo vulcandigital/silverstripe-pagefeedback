@@ -30,11 +30,11 @@ class PageFeedbackEntry extends DataObject
 
     /** @var array */
     private static $db = [
-        'Rating'    => 'Enum("1,2,3,4,5")',
+        'Rating'    => 'Enum("0,1,2,3,4,5")',
         'Comment'   => 'Text',
         'SessionID' => 'Varchar(255)',
         'IPAddress' => 'Varchar(255)',
-        'Thumbs'    => 'Enum("Up, Down")'
+        'Thumbs'    => 'Enum("+1, -1")'
     ];
 
     /** @var array */
@@ -44,8 +44,9 @@ class PageFeedbackEntry extends DataObject
 
     /** @var array */
     private static $summary_fields = [
-        'Rating'             => 'Rating',
-        'CmsComment' => 'Comment'
+        'DisplayRating'     => 'Rating',
+        'DisplayRatingMode' => 'Mode',
+        'DisplayComment'    => 'Comment'
     ];
 
     /**
@@ -63,7 +64,7 @@ class PageFeedbackEntry extends DataObject
     /**
      * @return string|DBHTMLText
      */
-    public function getCmsComment()
+    public function getDisplayComment()
     {
         if (strlen($this->Comment)) {
             return $this->Comment;
@@ -72,5 +73,41 @@ class PageFeedbackEntry extends DataObject
         $html = DBHTMLText::create();
 
         return $html->setValue('<em>' . _t('VulcanPageFeedback.CMS_NO_COMMENT', 'No comment was provided..') . '</em>');
+    }
+
+    public function getRatingMode()
+    {
+        if ($this->Rating) {
+            return 'form';
+        }
+
+        if ($this->Thumbs) {
+            return 'thumbs';
+        }
+
+        return false;
+    }
+
+    public function getDisplayRatingMode()
+    {
+        if (!$mode = $this->getRatingMode()) {
+            return 'Unknown';
+        }
+
+        return ucfirst($mode);
+    }
+
+    public function getDisplayRating()
+    {
+        if (!$mode = $this->getRatingMode()) {
+            return 'Unknown';
+        }
+
+        return ($mode === 'form') ? $this->Rating : $this->Thumbs;
+    }
+
+    public function getDisplayThumbs()
+    {
+
     }
 }

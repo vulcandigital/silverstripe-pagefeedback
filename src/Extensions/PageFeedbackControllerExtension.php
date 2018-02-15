@@ -123,7 +123,7 @@ class PageFeedbackControllerExtension extends Extension
      */
     public function processPageFeedbackUp($data, Form $form)
     {
-        return $this->processPageFeedbackThumbs($data, $form, 'up');
+        return $this->processPageFeedbackThumbs($data, $form, '+1');
     }
 
     /**
@@ -134,7 +134,7 @@ class PageFeedbackControllerExtension extends Extension
      */
     public function processPageFeedbackDown($data, Form $form)
     {
-        return $this->processPageFeedbackThumbs($data, $form, 'down');
+        return $this->processPageFeedbackThumbs($data, $form, '-1');
     }
 
     /**
@@ -154,8 +154,8 @@ class PageFeedbackControllerExtension extends Extension
             $this->owner->httpError(404);
         }
 
-        if (!in_array($upOrDown, ['up', 'down'])) {
-            throw new \Exception('upOrDown should be "up" or "down');
+        if (!in_array($upOrDown, ['+1', '-1'])) {
+            throw new \Exception('upOrDown should be "+1" or "-1');
         }
 
         if (Director::is_ajax()) {
@@ -212,7 +212,7 @@ class PageFeedbackControllerExtension extends Extension
      * Save a new entry
      *
      * @param Form $form
-     * @param null $upOrDown If provided, the entry will be assume its "thumbs" mode
+     * @param null $upOrDown If provided, the entry will be assume its "thumbs" mode. Possible values are +1 and -1
      *
      * @return PageFeedbackEntry
      */
@@ -221,7 +221,7 @@ class PageFeedbackControllerExtension extends Extension
         /** @var PageFeedbackEntry $record */
         $record = PageFeedbackEntry::create();
         $form->saveInto($record);
-        $record->Thumbs = ucfirst($upOrDown);
+        $record->Thumbs = $upOrDown;
         $record->SessionID = session_id();
         $record->IPAddress = $this->owner->getRequest()->getIP();
         $record->PageID = $this->owner->ID;
