@@ -23,7 +23,7 @@ The users IP address and their PHP Session ID is recorded on a per-page basis so
 Installation is supported via composer only:
 
 ```
-composer require zanderwar/silverstripe-pagefeedback "^2"
+composer require vulcandigital/silverstripe-pagefeedback "^2"
 ```
 
 ## Configuration
