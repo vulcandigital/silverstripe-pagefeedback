@@ -24,6 +24,9 @@
       "Vulcan\\PageFeedback\\Tests\\": "tests/"
     }
   },
+  "suggest": {
+      "silverstripe/spamprotection": "To enable spam protection features to your feedback forms"
+  },
   "extra": {
     "branch-alias": {
       "dev-master": "2.0.x-dev"

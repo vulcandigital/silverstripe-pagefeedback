@@ -6,11 +6,11 @@ use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPResponse;
 use SilverStripe\Core\Convert;
 use SilverStripe\Core\Extension;
-use SilverStripe\Core\Flushable;
 use SilverStripe\Forms\Form;
 use Vulcan\PageFeedback\Forms\PageFeedbackForm;
 use Vulcan\PageFeedback\Forms\PageFeedbackThumbsForm;
 use Vulcan\PageFeedback\Models\PageFeedbackEntry;
+use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
 
 /**
  * Class PageFeedback
