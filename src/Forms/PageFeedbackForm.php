@@ -6,10 +6,10 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\FormAction;
-use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\OptionsetField;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\TextareaField;
 
 /**
  * Class PageFeedbackForm
@@ -27,7 +27,7 @@ class PageFeedbackForm extends Form
     {
         $fields = FieldList::create([
             OptionsetField::create('Rating', 'Rating', $this->getRatingMap())->setTemplate('Vulcan\PageFeedback\Forms\PageFeedbackOptionsetField'),
-            TextField::create('Comment', 'Comment')
+            $this->commentField()
         ]);
 
         $actions = FieldList::create([
@@ -43,6 +43,22 @@ class PageFeedbackForm extends Form
         $this->extend('updateFormValidator', $validator);
 
         parent::__construct($controller, $name, $fields, $actions, $validator);
+    }
+
+    /**
+     * Return an appropriate comments form-field, according to userland config.
+     * The default is to return a {@link TextField}.
+     *
+     * @return FormField
+     */
+    public function commentField()
+    {
+        if ($this->config()->get('comment_field_type') == 'textarea') {
+            return TextareaField::create('Comment', 'Comment')
+                ->setRows(2);
+        }
+
+        return TextField::create('Comment', 'Comment');
     }
 
     /**
