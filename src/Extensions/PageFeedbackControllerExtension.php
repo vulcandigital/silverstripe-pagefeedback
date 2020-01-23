@@ -43,6 +43,11 @@ class PageFeedbackControllerExtension extends Extension
 
         $form = $formByMode::create($this->owner, __FUNCTION__);
 
+        // Optionally enable skiplnks to "drop" users to the correct area in the page
+        if ($skipLink = $this->owner->config()->get('pagefeedback_skiplink')) {
+            $form->setFormAction(sprintf('%s#%s', $form->FormAction(), $skipLink));
+        }
+
         if ($form->hasExtension(FormSpamProtectionExtension::class) && $enableSpamProtection) {
             $form->enableSpamProtection();
         }
