@@ -66,7 +66,7 @@ class PageFeedbackEntry extends DataObject
      */
     public function getDisplayComment()
     {
-        if (strlen($this->Comment)) {
+        if ($this->Comment) {
             return $this->Comment;
         }
 
